@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Winbook</display-name>
+  
+  <servlet>
+  	<servlet-name>RestletServlet</servlet-name>
+  	<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+  	<init-param>
+  		<param-name>org.restlet.component</param-name>
+  		<param-value>com.winbook.layer.controller.WinbookComponent</param-value>
+  	</init-param>
+  	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>RestletServlet</servlet-name>
+  	<url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 
+	  <context-param>
+	  	<param-name>databaseName</param-name>
+	  	<param-value>jdbc/mysqldb</param-value>  
+	  </context-param>
+   --> 
+  <context-param>
+  	<param-name>freemarkerTemplateLocation</param-name>
+  	<param-value>/WEB-INF</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/springBeansConfig.xml</param-value>
+  </context-param>
+  
+  <!-- The spring listener MUST BE LOADED BEFORE WinbookConfig to ensure the spring container is created first and can then be cached by WinbookConfig -->
+  
+  <listener>
+ 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+ 
+  <listener>
+  	<listener-class>com.winbook.layer.controller.WinbookConfig</listener-class>  	
+  </listener>
+ 
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

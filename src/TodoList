@@ -1,0 +1,47 @@
+
+=======================TESTING RELATED=======================
+-add shaper related tests for winconditionDAO
+-addWC must throw exception in case of failure
+
+-add error representations to wallPageResource and the win condition resource
+-create an error Representation class.
+
+-make the winconditions links in the .ftl file for the wall.
+-add username/password hash to cookie for authentication
+
+- need to write Issue DAO for fetching issues per win condition i.e., issues for a single WC only
+
+--May 22nd--
+- When adding the 'first' WC erase the info of "no win conditions exist"
+- deletion and addition of data needs to be authorized - must have a DAO test in place and a UI provision for the same.
+- editing of WIO must also update the timestamp?? - may need a separate 'last updated' edit field in DB
+
+--June 25th--
+- Concurrent Edit/delete handling!! ==> storing of timestamp with each entity on the page
+- Add user management for different users = cookies + authentication/authorization + basic cryptography
+- Enhance queries to take in values of the parent's PK like issue query also takes in WCID as part of query - check if valuable from security standpoint
+
+
+-- June 26th
+- Delete data-winbook-delete/edit data items/tags. Redundant. Use hasClass(...) based comparison instead.
+- Refactor "ADD" functionality for entities to return generated Id as well as timestamp
+- Add "error:" cases to jquery's ajax functionality to show better error dialogs
+- add exceptions to DAOs for missing id's before updating etc., and update test cases
+- Also need to put in extra checks before insertion of issues/option/comments to ensure the parent exists and has not been deleted by a concurrent request
+
+- Async update fetching of win conditions and categories.
+
+- Edit Category text
+
+- What if instead of numeric ids someone sends invalid ids in the URL? The current Integer.parseInts may fail! Fix that
+
+-Disable access/modifications for non-members and deletion rights for shapers
+-fix the query for getting all projects a person is member of. The group by on project_title will suppress some of the email id's for joining and may not work as expected.
+-(above query IS BUGGY) - fix it for non-membership i.e., projects for which user is already member shows up in non-member list too...
+-if # of selected posts == 0 then no categorization should be applied - seems something is still sent to the server but nothing really happens....
+
+- handle graceful logout i.e., if user presses back button, makes a change the entire login page comes in jquery popup - do something like the following: 
+  (http://stackoverflow.com/questions/199099/how-to-manage-a-redirect-request-after-a-jquery-ajax-call AND
+   http://blog.arc90.com/2008/09/15/custom-http-response-headers-with-restlet/)
+
+
